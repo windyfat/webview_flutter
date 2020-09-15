@@ -371,11 +371,11 @@
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:nsUrl];
     [request setAllHTTPHeaderFields:headers];
     
-    //判断是url使用不用的加载方式
+    //判断url的加载方式
     if([url hasPrefix:@"http"]) {
         [_webView loadRequest:request];
     }else{
-        // 项目中传过来的路径中含有@"file://"，所以需要替换为空
+        // 我自己项目中传过来的路径中含有@"file://"，所以需要替换为空，实际应以当前项目为主
         url = [url stringByReplacingOccurrencesOfString:@"file://" withString:@""];
         if (@available(iOS 9.0, *)) {
             NSURL *findUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], url]];
